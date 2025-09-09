@@ -33,7 +33,7 @@ const (
 type Condition struct {
 	Field string
 	Op    Op
-	Value any // для In — slice
+	Value any // для OpIn ожидается slice
 }
 
 type Sort struct {
@@ -42,7 +42,8 @@ type Sort struct {
 }
 
 type Pagination struct {
-	Limit, Offset int
+	Limit  int
+	Offset int
 }
 
 type QuerySpec struct {
