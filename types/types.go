@@ -53,3 +53,7 @@ type QuerySpec struct {
 	Sort   []Sort
 	Page   *Pagination
 }
+
+func (p Pagination) Ptr() *Pagination {
+	return &p
+}
