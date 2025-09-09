@@ -154,6 +154,18 @@ func BuildSelect(spec types.QuerySpec, sch schemas.Schema) (string, []any, error
 	return sb.String(), args, nil
 }
 
+func BuildCount(spec types.QuerySpec, sch schemas.Schema) (string, []any, error) {
+	spec2 := spec
+	spec2.Select = nil
+	spec2.Sort = nil
+	spec2.Page = nil
+	sql, args, err := BuildSelect(spec2, sch)
+	if err != nil {
+		return "", nil, err
+	}
+	return "SELECT count(*) FROM (" + sql + ") t", args, nil
+}
+
 func toSlice(v any) ([]any, bool) {
 	switch s := v.(type) {
 	case []any:
